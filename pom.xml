@@ -11,9 +11,9 @@
     <properties>
 
     <!-- For Docker setup see https://docs.kalix.io/projects/container-registries.html -->
-    <kalixContainerRegistry>kcr.us-east-1.kalix.io</kalixContainerRegistry>
-    <kalixOrganization>acme</kalixOrganization>
-    <dockerImage>${kalixContainerRegistry}/${kalixOrganization}/${project.artifactId}</dockerImage>
+    <kalixContainerRegistry>kcr.eu-central-1.kalix.io</kalixContainerRegistry>
+    <kalixOrganization>lightbend</kalixOrganization>
+    <dockerImage>${kalixContainerRegistry}/${kalixOrganization}/ccr-playground/${project.artifactId}</dockerImage>
     <dockerTag>${project.version}-${build.timestamp}</dockerTag>
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     <mainClass>io.kx.loanapp.Main</mainClass>
@@ -275,6 +275,11 @@
   </profiles>
 
   <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.9.0</version>
+    </dependency>
     <dependency>
       <groupId>io.kalix</groupId>
       <artifactId>kalix-java-sdk-protobuf</artifactId>

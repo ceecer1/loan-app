@@ -2,6 +2,9 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
+import "kalix/annotations.proto";
+
+option java_outer_classname = "LoanAppApi";
 
 package io.kx.loanapp.api;
 
@@ -23,7 +26,7 @@ message LoanAppState {
 }
 
 message SubmitCommand {
-  string loan_app_id = 1;
+  string loan_app_id = 1 [(kalix.field).entity_key = true];
   string client_id = 2;
   int64 client_monthly_income_cents = 3;
   int64 loan_amount_cents = 4;
@@ -31,15 +34,15 @@ message SubmitCommand {
 }
 
 message GetCommand {
-  string loan_app_id = 1;
+  string loan_app_id = 1 [(kalix.field).entity_key = true];
 }
 
 message ApproveCommand {
-  string loan_app_id = 1;
+  string loan_app_id = 1 [(kalix.field).entity_key = true];
 }
 
 message DeclineCommand {
-  string loan_app_id = 1;
+  string loan_app_id = 1 [(kalix.field).entity_key = true];
   string reason = 2;
 }
 
