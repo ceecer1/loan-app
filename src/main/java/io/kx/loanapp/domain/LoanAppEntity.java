@@ -76,7 +76,20 @@ public class LoanAppEntity extends AbstractLoanAppEntity {
 
   @Override
   public Effect<Empty> decline(LoanAppDomain.LoanAppDomainState currentState, LoanAppApi.DeclineCommand declineCommand) {
-    return effects().error("The command handler for `Decline` is not implemented, yet");
+    if (currentState.equals(LoanAppDomain.LoanAppDomainState.getDefaultInstance())) {
+      return effects().error("NOT FOUND ERROR");
+    } else if (currentState.getStatus() == LoanAppDomain.LoanAppDomainStatus.STATUS_IN_REVIEW) {
+      LoanAppDomain.Declined declinedEvent = LoanAppDomain.Declined.newBuilder()
+              .setEventTimestamp(Timestamps.fromMillis(System.currentTimeMillis()))
+              .setLoanAppId(declineCommand.getLoanAppId())
+              .setReason("Declined because of not meeting requirement")
+              .build();
+      return effects().emitEvent(declinedEvent).deleteEntity().thenReply(any -> Empty.getDefaultInstance());
+    } else if (currentState.getStatus() == LoanAppDomain.LoanAppDomainStatus.STATUS_DECLINED) {
+      return effects().reply(Empty.getDefaultInstance());
+    } else {
+      return effects().error("Something wrong we don;t know");
+    }
   }
 
   @Override

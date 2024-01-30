@@ -1,6 +1,8 @@
 package io.kx.loanapp;
 
+import io.kx.loanapp.action.LoanAppServiceActionImpl;
 import io.kx.loanapp.domain.LoanAppEntity;
+import io.kx.loanapp.view.LoanAppByStatusView;
 import kalix.javasdk.Kalix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,9 @@ public final class Main {
     // If you prefer, you may remove this and manually register these components in a
     // `new Kalix()` instance.
     return KalixFactory.withComponents(
-      LoanAppEntity::new);
+      LoanAppEntity::new,
+      LoanAppByStatusView::new,
+      LoanAppServiceActionImpl::new);
   }
 
   public static void main(String[] args) throws Exception {
