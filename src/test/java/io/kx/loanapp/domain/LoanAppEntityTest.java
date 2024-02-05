@@ -5,12 +5,11 @@ import io.kx.loanapp.api.LoanAppApi;
 import kalix.javasdk.eventsourcedentity.EventSourcedEntity;
 import kalix.javasdk.eventsourcedentity.EventSourcedEntityContext;
 import kalix.javasdk.testkit.EventSourcedResult;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.Ignore;
+import static org.junit.Assert.*;
 
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 // This class was initially generated based on the .proto definition by Kalix tooling.
 //
@@ -70,7 +69,7 @@ public class LoanAppEntityTest {
 
 
   @Test
-  @Disabled("to be implemented")
+  @Ignore("to be implemented")
   public void getTest() {
     LoanAppEntityTestKit service = LoanAppEntityTestKit.of(LoanAppEntity::new);
     // GetCommand command = GetCommand.newBuilder()...build();
@@ -79,7 +78,7 @@ public class LoanAppEntityTest {
 
 
   @Test
-  @Disabled("to be implemented")
+  @Ignore("to be implemented")
   public void declineTest() {
     LoanAppEntityTestKit service = LoanAppEntityTestKit.of(LoanAppEntity::new);
     // DeclineCommand command = DeclineCommand.newBuilder()...build();
